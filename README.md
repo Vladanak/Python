@@ -1,2 +1,2 @@
 # Python
-All my programs on Python
+Training contains program which was writed on framework Flask
