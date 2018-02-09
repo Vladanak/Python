@@ -1,0 +1,5 @@
+<Request 'http://127.0.0.1:5000/search4' [POST]> {'e'}
+<Request 'http://127.0.0.1:5000/search4' [POST]> {'a'}
+<Request 'http://127.0.0.1:5000/search4' [POST]> {'a'}
+<Request 'http://127.0.0.1:5000/search4' [POST]> set()
+ImmutableMultiDict([('phrase', 'ke'), ('letters', 'e')])|127.0.0.1|Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 OPR/50.0.2762.67|{'e'}
