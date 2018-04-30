@@ -8,9 +8,9 @@ global t,yourgmail,yourgmailpass,sendto,interval,otpravka,start_time
 
 
 #########Settings########
-yourgmail="vladdmyr89@gmail.com"
-yourgmailpass="Bobr1234567890"
-sendto="vladdmyr98@mail.ru"
+yourgmail=""
+yourgmailpass=""
+sendto=""
 interval=10
 otpravka=60
 t =''
